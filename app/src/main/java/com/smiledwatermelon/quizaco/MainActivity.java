@@ -40,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState!=null){
+            mScore=savedInstanceState.getInt("ScoreKey");
+            mQuizIndex=savedInstanceState.getInt("IndexKey");
+        }
+        else{
+            mScore=0;
+            mQuizIndex=0;
+
+        }
+
         mFalseButton = findViewById(R.id.false_button);
         mTrueButton=findViewById(R.id.true_button);
         mQuizText=findViewById(R.id.question_text_view);
@@ -48,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         mQuizText.setText(mQuizBank[mQuizIndex].getQuistionResourceID());
         mProgressBar=findViewById(R.id.progress_bar);
         mProgressBar.setMax(mQuizBank.length);
-
+        mQuizText.setText(mQuizBank[mQuizIndex].getQuistionResourceID());
+        mScoreText.setText("Score "+mScore+"/"+mQuizBank.length);
         // Set buttons listeners
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,4 +114,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),R.string.incorrect_toast,Toast.LENGTH_SHORT).show();
 
     }
+@Override
+    public void onSaveInstanceState(Bundle outState ) {
+
+    super.onSaveInstanceState(outState);
+    outState.putInt("ScoreKey",mScore);
+    outState.putInt("IndexKey",mQuizIndex);
+}
 }
