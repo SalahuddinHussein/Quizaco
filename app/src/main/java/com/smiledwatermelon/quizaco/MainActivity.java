@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
             new TrueFalse(R.string.question_10,true),
             new TrueFalse(R.string.question_11,false),
             new TrueFalse(R.string.question_12,false),
-            new TrueFalse(R.string.question_13,true)
+            new TrueFalse(R.string.question_13,true),
+
     };
 
 
